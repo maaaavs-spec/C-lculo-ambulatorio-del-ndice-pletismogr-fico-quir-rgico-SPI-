@@ -6,7 +6,16 @@
 * Laura Daniela Triana Molano 5600828
 
 <h2 align="center">𝙞𝙣𝙩𝙧𝙤𝙙𝙪𝙘𝙘𝙞ó𝙣</h2>
+
+La monitorización de la nocicepción durante las intervenciones quirúrgicas es muy importante para estimar la reacción fisiológica del paciente y propiciar un balance apropiado entre analgesia y nocicepción. El Índice Pletismográfico Quirúrgico (SPI) es uno de los métodos creados para este fin, al ser este método funciona empleado propiedades de la onda fotopletismografía (PPG) para calcular las variaciones relacionadas con la reacción nociceptiva. El SPI se expresa dentro de una escala que va del 0 al 100; en ella, los valores más altos indican una respuesta nociceptiva más amplia.
+En esta práctica se desarrolló un sistema de adquisición y procesamiento de una señal PPG para obtener características de la onda de pulso y realizar el cálculo del SPI en condiciones ambulatorias. Para esto, se utilizó un sensor óptico MAX30102 conectado a un ESP32, lo que posibilitó la adquisición continua de la señal y su procesamiento a través de MATLAB. Se determinaron parámetros como los intervalos entre pulsos y la amplitud de la onda a partir de la señal adquirida, que fueron empleados posteriormente en el cálculo experimental del índice.
+El desarrollo de esta práctica permite posible la conexión entre la adquisición de señales fisiológicas, su análisis digital y la interpretación de respuestas vinculadas con la nocicepción. Además, se pretende analizar las discrepancias entre la interpretación del SPI y la respuesta fisiológica observada. Esto es así porque el SPI es un índice que permite calcular la nocicepción, aunque no representa una medición directa de la percepción subjetiva del dolor. La práctica propone específicamente identificar estas características y examinar las restricciones del sistema desarrollado.
 <img width="687" height="434" alt="image" src="https://github.com/user-attachments/assets/b99cf639-575e-4ece-b454-08b1229f1442" />
+
+(MAX30102 - Sensor de Concentración de Oxígeno y Ritmo Cardíaco - Electronilab, 2026)
+
+
+
 <h2 align="center">𝙤𝙗𝙟𝙚𝙩𝙞𝙫𝙤𝙨</h2>
 
 𝙊𝙗𝙟𝙚𝙩𝙞𝙫𝙤 𝙜𝙚𝙣𝙚𝙧𝙖𝙡: 
@@ -22,8 +31,18 @@ Desarrollar un sistema de adquisición y procesamiento de una señal fotopletism
 
 
 𝙎𝙚𝙣𝙨𝙤𝙧 𝙚𝙨𝙘𝙤𝙜𝙞𝙙𝙤 
+El MAX30102 es un sensor óptico de la compañía Maxim Integrated que, en una sola unidad, combina las funciones del oxímetro y el pulsímetro y puede ser utilizado con un procesador como Arduino o ESP32. Este sensor basa su funcionamiento en el comportamiento que tiene la sangre ante la luz, esto en función del grado de saturación. 
+Para ello el sensor incorpora dos LED ´s una en el espectro infrarrojo (920nm) y el segundo LED rojo (660nm), , un fotodetector, óptica especializada, filtro de luz ambiental entre 50 y 60Hz, y un conversor ADC delta sigma de 16 bits y de hasta 1000 muestras por segundo, además, posee un sensor de temperatura. El sensor se pone al contacto de la piel normalmente el dedo, pero también puede ser puesta en las muñecas y el sensor detecta la luz reflejada, y determina el grado de saturación. 
 
+
+<img width="921" height="446" alt="image" src="https://github.com/user-attachments/assets/3eb50ebd-7431-418f-ad67-2c6b75ccfabb" />
+Https://www.analog.com/en/products/max30102.html
+
+
+<h1 align="center"><i><b>𝐏𝐚𝐫𝐭𝐞 A 𝐝𝐞𝐥 𝐥𝐚𝐛𝐨𝐫𝐚𝐭𝐨𝐫𝐢𝐨</b></i></h1>
 𝙈𝙤𝙣𝙩𝙖𝙟𝙚 𝙚𝙭𝙥𝙚𝙧𝙞𝙢𝙚𝙣𝙩𝙖𝙡
+
+<h1 align="center"><i><b>𝐏𝐚𝐫𝐭𝐞 B 𝐝𝐞𝐥 𝐥𝐚𝐛𝐨𝐫𝐚𝐭𝐨𝐫𝐢𝐨</b></i></h1>
 # Codigo usado
 >
 ```
@@ -486,8 +505,13 @@ fprintf('-----------------------------------------\n');
 ```
 >
 
+<h1 align="center"><i><b>𝐏𝐚𝐫𝐭𝐞 C 𝐝𝐞𝐥 𝐥𝐚𝐛𝐨𝐫𝐚𝐭𝐨𝐫𝐢𝐨</b></i></h1>
+
 **Resultados**
 
 𝘾𝙤𝙣𝙘𝙡𝙪𝙨𝙞𝙤𝙣
 
 𝘽𝙞𝙗𝙡𝙞𝙤𝙜𝙧𝙖𝙛𝙞𝙖
+Llamas, L. (2020, 12 abril). Pulsímetro y oxímetro con Arduino y MAX30102. Luis Llamas. https://www.luisllamas.es/pulsimetro-y-oximetro-con-arduino-y-max30102/
+MAX30102 - Sensor de concentración de Oxígeno y Ritmo cardíaco - Electronilab. (2026, 16 septiembre). Electronilab. https://electronilab.co/tienda/max30100-sensor-de-concentracion-de-oxigeno-y-ritmo-cardiaco/
+
