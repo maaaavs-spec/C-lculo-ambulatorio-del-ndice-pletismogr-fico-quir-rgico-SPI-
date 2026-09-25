@@ -33,9 +33,18 @@ Desarrollar un sistema de adquisición y procesamiento de una señal fotopletism
 + Analizar la evolución del SPI durante las tres etapas de la prueba.
 
 
-𝙎𝙚𝙣𝙨𝙤𝙧 𝙚𝙨𝙘𝙤𝙜𝙞𝙙𝙤 
+
+**Fotopletismografía (PPG)**
+
+**Nocicepción y respuesta autonómica**
+
+**Sensor elegido**
 El MAX30102 es un sensor óptico de la compañía Maxim Integrated que, en una sola unidad, combina las funciones del oxímetro y el pulsímetro y puede ser utilizado con un procesador como Arduino o ESP32. Este sensor basa su funcionamiento en el comportamiento que tiene la sangre ante la luz, esto en función del grado de saturación. 
 Para ello el sensor incorpora dos LED ´s una en el espectro infrarrojo (920nm) y el segundo LED rojo (660nm), , un fotodetector, óptica especializada, filtro de luz ambiental entre 50 y 60Hz, y un conversor ADC delta sigma de 16 bits y de hasta 1000 muestras por segundo, además, posee un sensor de temperatura. El sensor se pone al contacto de la piel normalmente el dedo, pero también puede ser puesta en las muñecas y el sensor detecta la luz reflejada, y determina el grado de saturación. 
+**Amplitud de la onda pletismográfica y tono vascular**
+**Índice pletismográfico quirúrgico**
+**Detección de máximos y mínimos en señales PPG**
+**Cold Pressor Test como estímulo fisiológico**
 
 
 <img width="921" height="446" alt="image" src="https://github.com/user-attachments/assets/3eb50ebd-7431-418f-ad67-2c6b75ccfabb" />
@@ -46,6 +55,46 @@ El sensor fue empleado junto con una ESP32, que se encargó de recibir la inform
 
 <h1 align="center"><i><b>𝐏𝐚𝐫𝐭𝐞 A 𝐝𝐞𝐥 𝐥𝐚𝐛𝐨𝐫𝐚𝐭𝐨𝐫𝐢𝐨</b></i></h1>
 𝙈𝙤𝙣𝙩𝙖𝙟𝙚 𝙚𝙭𝙥𝙚𝙧𝙞𝙢𝙚𝙣𝙩𝙖𝙡
+
+Para el desarrollo del laboratorio se implementó un sistema de adquisición de señal fotopletismográfica (PPG) utilizando un sensor MAX30102 conectado a una ESP32. El montaje permitió obtener la señal óptica infrarroja asociada a las variaciones del volumen sanguíneo periférico y enviarla posteriormente a MATLAB para su procesamiento.
+
+El sensor MAX30102 fue el instrumento de medición. Se situó el dedo sobre su superficie y se trató de mantener la posición estable y en silencio durante todo el proceso de adquisición para disminuir las variaciones causadas por movimiento. El sensor recibe la señal óptica a través de su fotodetector y emisor integrados.
+
+La ESP32 funcionó como unidad de adquisición y comunicación. Los datos obtenidos por el MAX30102 fueron enviados al computador mediante comunicación serial.
+´´´
+        DEDO
+         │
+         ▼
+   ┌─────────────┐
+   │  MAX30102   │
+   │  Sensor PPG │
+   └──────┬──────┘
+          │
+          │ Datos
+          ▼
+   ┌─────────────┐
+   │    ESP32    │
+   └──────┬──────┘
+          │
+          │ Comunicación serial
+          ▼
+   ┌─────────────┐
+   │  COMPUTADOR │
+   │   MATLAB    │
+   └──────┬──────┘
+          │
+          ▼
+   Procesamiento PPG
+          │
+          ├── Filtrado
+          ├── Máximos y mínimos
+          ├── HBI
+          ├── PPGA
+          └── SPI
+´´
+
+La adquisición se realizó durante 120 segundos, dividida en tres etapas de 40 segundos. Posteriormente, los datos fueron procesados en MATLAB para obtener la señal PPG filtrada, detectar los máximos y mínimos y calcular las variables necesarias para la estimación experimental del SPI.
+
 
 <h1 align="center"><i><b>𝐏𝐚𝐫𝐭𝐞 B 𝐝𝐞𝐥 𝐥𝐚𝐛𝐨𝐫𝐚𝐭𝐨𝐫𝐢𝐨</b></i></h1>
 # Codigo usado
@@ -585,8 +634,12 @@ Este laboratorio partió de la necesidad de estimar de forma no invasiva el nive
 
 <h2 align="center">𝘽𝙞𝙗𝙡𝙞𝙤𝙜𝙧𝙖𝙛𝙞𝙖</h2>
 
-Llamas, L. (2020, 12 abril). Pulsímetro y oxímetro con Arduino y MAX30102. Luis Llamas. https://www.luisllamas.es/pulsimetro-y-oximetro-con-arduino-y-max30102/
-MAX30102 - Sensor de concentración de Oxígeno y Ritmo cardíaco - Electronilab. (2026, 16 septiembre). Electronilab. https://electronilab.co/tienda/max30100-sensor-de-concentracion-de-oxigeno-y-ritmo-cardiaco/
-
-
+1. Llamas, L. (2020, 12 abril). Pulsímetro y oxímetro con Arduino y MAX30102. Luis Llamas. https://www.luisllamas.es/pulsimetro-y-oximetro-con-arduino-y-max30102/
+   
+2. MAX30102 - Sensor de concentración de Oxígeno y Ritmo cardíaco - Electronilab. (2026, 16 septiembre). Electronilab. https://electronilab.co/tienda/max30100-sensor-de-concentracion-de-oxigeno-y-ritmo-cardiaco/
+ 
+3.  J. Allen, “Photoplethysmography and its application in clinical physiological measurement,” Physiological Measurement, vol. 28, no. 3, pp. R1–R39, 2007
+  
+4. García Francés, L. (2025). Diseño de un sistema para la medición de la presión arterial mediante combinación de fotopletismografía (PPG) y electrocardiograma (ECG). https://riunet.upv.es/handle/10251/223179
+5. Sastoque, S., & López López, J. M. (2020). MONITOREO REMOTO DE FRECUENCIA CARDÍACA A TRAVÉS DE FOTOPLETISMOGRAFÍA DE IMAGEN (IPPG). Encuentro Internacional De Educación En Ingeniería. https://doi.org/10.26507/ponencia.795
 
