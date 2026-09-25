@@ -93,12 +93,18 @@ La ESP32 funcionó como unidad de adquisición y comunicación. Los datos obteni
 ´´´
         DEDO ->MAX30102 Sensor PPG ->│ Datos-> ESP32 ->|Comunicación serial-> MATLAB  
           ▼
+          
    Procesamiento PPG
           │
+          
           ├── Filtrado
+          
           ├── Máximos y mínimos
+          
           ├── HBI
+          
           ├── PPGA
+          
           └── SPI
 ´´´
 
