@@ -8,8 +8,11 @@
 <h2 align="center">𝙞𝙣𝙩𝙧𝙤𝙙𝙪𝙘𝙘𝙞ó𝙣</h2>
 
 La monitorización de la nocicepción durante las intervenciones quirúrgicas es muy importante para estimar la reacción fisiológica del paciente y propiciar un balance apropiado entre analgesia y nocicepción. El Índice Pletismográfico Quirúrgico (SPI) es uno de los métodos creados para este fin, al ser este método funciona empleado propiedades de la onda fotopletismografía (PPG) para calcular las variaciones relacionadas con la reacción nociceptiva. El SPI se expresa dentro de una escala que va del 0 al 100; en ella, los valores más altos indican una respuesta nociceptiva más amplia.
+
 En esta práctica se desarrolló un sistema de adquisición y procesamiento de una señal PPG para obtener características de la onda de pulso y realizar el cálculo del SPI en condiciones ambulatorias. Para esto, se utilizó un sensor óptico MAX30102 conectado a un ESP32, lo que posibilitó la adquisición continua de la señal y su procesamiento a través de MATLAB. Se determinaron parámetros como los intervalos entre pulsos y la amplitud de la onda a partir de la señal adquirida, que fueron empleados posteriormente en el cálculo experimental del índice.
+
 El desarrollo de esta práctica permite posible la conexión entre la adquisición de señales fisiológicas, su análisis digital y la interpretación de respuestas vinculadas con la nocicepción. Además, se pretende analizar las discrepancias entre la interpretación del SPI y la respuesta fisiológica observada. Esto es así porque el SPI es un índice que permite calcular la nocicepción, aunque no representa una medición directa de la percepción subjetiva del dolor. La práctica propone específicamente identificar estas características y examinar las restricciones del sistema desarrollado.
+
 <img width="687" height="434" alt="image" src="https://github.com/user-attachments/assets/b99cf639-575e-4ece-b454-08b1229f1442" />
 
 (MAX30102 - Sensor de Concentración de Oxígeno y Ritmo Cardíaco - Electronilab, 2026)
