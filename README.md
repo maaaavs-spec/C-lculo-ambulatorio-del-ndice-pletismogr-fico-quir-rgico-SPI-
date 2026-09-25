@@ -10,9 +10,15 @@
 <h2 align="center">𝙤𝙗𝙟𝙚𝙩𝙞𝙫𝙤𝙨</h2>
 
 𝙊𝙗𝙟𝙚𝙩𝙞𝙫𝙤 𝙜𝙚𝙣𝙚𝙧𝙖𝙡: 
-
+Desarrollar un sistema de adquisición y procesamiento de una señal fotopletismográfica para obtener el Índice Pletismográfico Quirúrgico (SPI) durante una captura ambulatoria de 120 segundos.
 
 𝙊𝙗𝙟𝙚𝙩𝙞𝙫𝙤𝙨 𝙀𝙨𝙥𝙚𝙘𝙞́𝙛𝙞𝙘𝙤𝙨:
++ Adquirir la señal PPG mediante el sensor MAX30102 y una ESP32.
++ Procesar la señal PPG para reducir componentes no deseadas.
++ Detectar los máximos y mínimos de la señal.
++ Calcular el intervalo entre pulsaciones (HBI).
++ Calcular el SPI para cada pulsación.
++ Analizar la evolución del SPI durante las tres etapas de la prueba.
 
 
 𝙎𝙚𝙣𝙨𝙤𝙧 𝙚𝙨𝙘𝙤𝙜𝙞𝙙𝙤 
