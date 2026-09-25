@@ -35,16 +35,44 @@ Desarrollar un sistema de adquisición y procesamiento de una señal fotopletism
 
 
 **Fotopletismografía (PPG)**
+Consiste en un método óptico no invasivo que se emplea para identificar cambios en el volumen de sangre de un tejido. Su fundamento consiste en iluminar el tejido con una fuente de luz y evaluar las variaciones en la cantidad de luz que es absorbida, reflejada o transmitida por dicho tejido. Las fluctuaciones observadas están en su mayoría vinculadas a las alteraciones pulsátiles del volumen de sangre arterial que se generan con el ciclo cardíaco.
+
+En una señal PPG se pueden identificar dos elementos fundamentales: un componente DC, que está relacionado sobre todo con el nivel basal de absorción generado por los tejidos y por el volumen sanguíneo no pulsátil, y un componente AC, vinculado a las oscilaciones del flujo de sangre arterial.
+
+La forma de onda PPG permite identificar eventos característicos de cada ciclo cardíaco. En particular, los máximos de la señal pueden utilizarse para determinar el intervalo temporal entre pulsaciones, mientras que la diferencia entre un máximo y el valle precedente permite estimar la amplitud pulsátil.
+
 
 **Nocicepción y respuesta autonómica**
+Corresponde al procesamiento fisiológico de estímulos potencialmente dañinos mediante el sistema nervioso. No es lo mismo por lo tanto no es comparable al dolor, ya que la nocicepción constituye una respuesta neurofisiológica, mientras que el dolor incluye además una experiencia sensorial y subjetiva.
+
+Ante un estímulo nociceptivo se pueden producir respuestas del *sistema nervioso autónomo*, particularmente modificaciones en la actividad simpática. Estas respuestas pueden manifestarse mediante cambios cardiovasculares y vasculares, como variaciones en la frecuencia cardíaca, presión arterial, perfusión periférica y tono vascular. Por esta razón, una señal PPG puede utilizarse para extraer características fisiológicas que respondan a cambios en el estado autonómico del sujeto.
+
+Sin embargo, una variación de la PPG no debe interpretarse como una medición directa del dolor, diversos factores como el movimiento, la temperatura, la respiración, el estado emocional y los cambios cardiovasculares también pueden modificar la señal. Como en el laboratorio que usamos el frio para provocar los cambios vistos.
+
 
 **Sensor elegido**
 El MAX30102 es un sensor óptico de la compañía Maxim Integrated que, en una sola unidad, combina las funciones del oxímetro y el pulsímetro y puede ser utilizado con un procesador como Arduino o ESP32. Este sensor basa su funcionamiento en el comportamiento que tiene la sangre ante la luz, esto en función del grado de saturación. 
 Para ello el sensor incorpora dos LED ´s una en el espectro infrarrojo (920nm) y el segundo LED rojo (660nm), , un fotodetector, óptica especializada, filtro de luz ambiental entre 50 y 60Hz, y un conversor ADC delta sigma de 16 bits y de hasta 1000 muestras por segundo, además, posee un sensor de temperatura. El sensor se pone al contacto de la piel normalmente el dedo, pero también puede ser puesta en las muñecas y el sensor detecta la luz reflejada, y determina el grado de saturación. 
-**Amplitud de la onda pletismográfica y tono vascular**
+
+**Amplitud de la onda pletismográfica**
+La amplitud de la onda pletismográfica representa la magnitud de la variación pulsátil detectada por el sistema óptico durante cada ciclo cardíaco. En términos simplificados, puede calcularse como la diferencia entre el máximo y el mínimo correspondiente a una pulsación*
+
 **Índice pletismográfico quirúrgico**
-**Detección de máximos y mínimos en señales PPG**
+
+El *Surgical Pleth Index (SPI)* es un índice desarrollado para utilizar información derivada de la señal fotopletismográfica como indicador de la respuesta nociceptiva durante anestesia. La guía del laboratorio describe el SPI como un índice con valores entre *0 y 100*, en el que valores mayores se relacionan con una mayor respuesta nociceptiva. 
+
+El fundamento del índice está relacionado con cambios en características de la onda PPG y en la frecuencia cardíaca. En particular, las variaciones en la amplitud de la señal y en los intervalos entre pulsaciones permiten obtener información sobre cambios en la respuesta autonómica.
+La adquisición se divide en tres intervalos de 40 segundos:
+
+text
+0 s ───────── 40 s ───────── 80 s ───────── 120 s
+      Etapa 1        Etapa 2        Etapa 3
+      Inicial          CPT          Recuperación
+      
+
 **Cold Pressor Test como estímulo fisiológico**
+El cold Pressor Test (CPT) es una prueba experimental utilizada para provocar una respuesta fisiológica mediante la exposición de una extremidad, generalmente la mano, a agua fría durante un periodo controlado. El estímulo térmico genera una respuesta autonómica que puede producir cambios cardiovasculares y vasculares, incluyendo modificaciones de la presión arterial y del tono vascular.
+
 
 
 <img width="921" height="446" alt="image" src="https://github.com/user-attachments/assets/3eb50ebd-7431-418f-ad67-2c6b75ccfabb" />
@@ -63,27 +91,7 @@ El sensor MAX30102 fue el instrumento de medición. Se situó el dedo sobre su s
 La ESP32 funcionó como unidad de adquisición y comunicación. Los datos obtenidos por el MAX30102 fueron enviados al computador mediante comunicación serial.
 
 ´´´
-        DEDO
-         │
-         ▼
-   ┌─────────────┐
-   │  MAX30102   │
-   │  Sensor PPG │
-   └──────┬──────┘
-          │
-          │ Datos
-          ▼
-   ┌─────────────┐
-   │    ESP32    │
-   └──────┬──────┘
-          │
-          │ Comunicación serial
-          ▼
-   ┌─────────────┐
-   │  COMPUTADOR │
-   │   MATLAB    │
-   └──────┬──────┘
-          │
+        DEDO ->MAX30102 Sensor PPG ->│ Datos-> ESP32 ->|Comunicación serial-> MATLAB  
           ▼
    Procesamiento PPG
           │
