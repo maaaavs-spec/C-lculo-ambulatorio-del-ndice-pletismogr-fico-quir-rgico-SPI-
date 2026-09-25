@@ -62,12 +62,12 @@ La amplitud de la onda pletismográfica representa la magnitud de la variación 
 El *Surgical Pleth Index (SPI)* es un índice desarrollado para utilizar información derivada de la señal fotopletismográfica como indicador de la respuesta nociceptiva durante anestesia. La guía del laboratorio describe el SPI como un índice con valores entre *0 y 100*, en el que valores mayores se relacionan con una mayor respuesta nociceptiva. 
 
 El fundamento del índice está relacionado con cambios en características de la onda PPG y en la frecuencia cardíaca. En particular, las variaciones en la amplitud de la señal y en los intervalos entre pulsaciones permiten obtener información sobre cambios en la respuesta autonómica.
-La adquisición se divide en tres intervalos de 40 segundos:
+La adquisición en este laboratorio fue dividido en tres intervalos de 40 segundos:
 
 text
 0 s ───────── 40 s ───────── 80 s ───────── 120 s
-      Etapa 1        Etapa 2        Etapa 3
-      Inicial          CPT          Recuperación
+      Etapa 1:Inicial        Etapa 2: CPT       Etapa 3:Recuperación
+
       
 
 **Cold Pressor Test como estímulo fisiológico**
