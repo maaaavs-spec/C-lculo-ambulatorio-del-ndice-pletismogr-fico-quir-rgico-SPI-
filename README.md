@@ -90,7 +90,6 @@ El sensor MAX30102 fue el instrumento de medición. Se situó el dedo sobre su s
 
 La ESP32 funcionó como unidad de adquisición y comunicación. Los datos obtenidos por el MAX30102 fueron enviados al computador mediante comunicación serial.
 
-´´´
         DEDO ->MAX30102 Sensor PPG ->│ Datos-> ESP32 ->|Comunicación serial-> MATLAB  
           ▼
           
@@ -106,7 +105,6 @@ La ESP32 funcionó como unidad de adquisición y comunicación. Los datos obteni
           ├── PPGA
           
           └── SPI
-´´´
 
 La adquisición se realizó durante 120 segundos, dividida en tres etapas de 40 segundos. Posteriormente, los datos fueron procesados en MATLAB para obtener la señal PPG filtrada, detectar los máximos y mínimos y calcular las variables necesarias para la estimación experimental del SPI.
 
