@@ -579,9 +579,12 @@ Limitaciones y recomendaciones
 ●	Repetir la adquisicion solicitando explicitamente inmovilidad del dedo durante los segundos identificados como criticos, o repetir el procesamiento excluyendo manualmente esos tramos, para contrastar la tendencia del SPI obtenida
 
 <h2 align="center">Conclusion</h2>
+
 Este laboratorio partió de la necesidad de estimar de forma no invasiva el nivel de activación simpática de un sujeto a partir de una señal fotopletismográfica adquirida con un sensor MAX30102 y un ESP32, combinando la variabilidad del intervalo entre latidos y la amplitud de pulso en un único índice, el SPI. Los resultados muestran que dicho índice desciende de forma sostenida en las etapas 1 y 3 del registro, lo que indica un incremento progresivo del tono simpático del sujeto durante esos intervalos, mientras que la etapa 2 exhibe un comportamiento más inestable, asociado a los artefactos de movimiento identificados en la señal. Estos hallazgos confirman que un esquema relativamente simple de adquisición y procesamiento —filtrado pasa-banda, detección de picos y normalización— es capaz de capturar tendencias fisiológicamente coherentes sin necesidad de instrumentación especializada, aunque también dejan en evidencia que la fiabilidad del índice depende fuertemente de la calidad de la señal de entrada. Como siguiente paso, sería pertinente incorporar un criterio de control de calidad de señal y una detección de picos adaptativa antes del cálculo del SPI, de manera que la técnica pueda validarse frente a un monitor de referencia y evaluarse en condiciones de mayor movimiento del sujeto.
 
-𝘽𝙞𝙗𝙡𝙞𝙤𝙜𝙧𝙖𝙛𝙞𝙖
+
+<h2 align="center">𝘽𝙞𝙗𝙡𝙞𝙤𝙜𝙧𝙖𝙛𝙞𝙖</h2>
+
 Llamas, L. (2020, 12 abril). Pulsímetro y oxímetro con Arduino y MAX30102. Luis Llamas. https://www.luisllamas.es/pulsimetro-y-oximetro-con-arduino-y-max30102/
 MAX30102 - Sensor de concentración de Oxígeno y Ritmo cardíaco - Electronilab. (2026, 16 septiembre). Electronilab. https://electronilab.co/tienda/max30100-sensor-de-concentracion-de-oxigeno-y-ritmo-cardiaco/
 
