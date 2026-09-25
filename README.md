@@ -38,6 +38,8 @@ Para ello el sensor incorpora dos LED ´s una en el espectro infrarrojo (920nm) 
 <img width="921" height="446" alt="image" src="https://github.com/user-attachments/assets/3eb50ebd-7431-418f-ad67-2c6b75ccfabb" />
 Https://www.analog.com/en/products/max30102.html
 
+El sensor fue empleado junto con una ESP32, que se encargó de recibir la información del MAX30102 y enviarla al ordenador para ser procesada más tarde en MATLAB. Para esta práctica, aunque el MAX30102 tiene la capacidad de funcionar con una variedad de configuraciones ópticas, se empleó específicamente la señal infrarroja (IR) para adquirir la PPG que se utilizó para calcular el SPI.
+
 
 <h1 align="center"><i><b>𝐏𝐚𝐫𝐭𝐞 A 𝐝𝐞𝐥 𝐥𝐚𝐛𝐨𝐫𝐚𝐭𝐨𝐫𝐢𝐨</b></i></h1>
 𝙈𝙤𝙣𝙩𝙖𝙟𝙚 𝙚𝙭𝙥𝙚𝙧𝙞𝙢𝙚𝙣𝙩𝙖𝙡
