@@ -507,8 +507,8 @@ fprintf('-----------------------------------------\n');
 
 <h1 align="center"><i><b>𝐏𝐚𝐫𝐭𝐞 C 𝐝𝐞𝐥 𝐥𝐚𝐛𝐨𝐫𝐚𝐭𝐨𝐫𝐢𝐨</b></i></h1>
 
+<h2 align="center">Resultados</h2>
 
-**Resultados**
 
 El codigo adquiere 120 segundos de senal PPG (canal IR) del sensor MAX30102 a traves de un ESP32, muestreada a 100 Hz y dividida en tres etapas de 40 segundos cada una. Sobre la senal cruda se realiza limpieza de muestras invalidas (interpolacion lineal), filtrado pasa-banda Butterworth de orden 3 (0.5-5 Hz) para aislar la componente pulsatil, deteccion de maximos y minimos por latido, calculo del intervalo entre latidos (HBI) y de la amplitud de pulso (PPGA), normalizacion min-max de ambos parametros y combinacion en el Surgical Pleth Index mediante la formula SPI = 100 - (0.7*PPGA_norm + 0.3*HBI_norm), limitado al rango 0-100 y suavizado con una mediana movil de aproximadamente 15 segundos.
 A continuacion se presentan los resultados obtenidos en cada etapa del procesamiento, junto con el analisis de las graficas generadas por el script.
@@ -553,8 +553,8 @@ Etapa 3	80 - 120	~70 -> ~52	Descenso sostenido
 
 En la Etapa 1 (0-40 s) el SPI suavizado inicia en su valor mas alto de todo el registro (~80) y desciende de forma progresiva hasta estabilizarse cerca de 54-55 hacia el final de la etapa. En la Etapa 2 (40-80 s) el indice se recupera parcialmente al inicio (~65-70) pero fluctua de manera inestable durante el resto del intervalo, sin una tendencia neta clara, incluyendo un descenso transitorio alrededor de los 55-60 s. En la Etapa 3 (80-120 s) el SPI suavizado alcanza nuevamente un valor alto al comienzo (~70, el segundo mas alto del registro) y despues desciende de forma sostenida y consistente hasta valores cercanos a 52-55, manteniendose estable en el tramo final.
 
+<h2 align="center">Analisis</h2>
 
-**Analisis**
 
 Calidad de la senal adquirida
 La senal original no muestra pulsatilidad visible a simple vista, lo cual es normal para una senal PPG cruda dominada por su componente DC y por variaciones lentas de perfusion o de contacto del sensor; el filtro pasa-banda es indispensable y cumple su funcion de exponer el componente cardiaco. Sin embargo, los tramos de alta variabilidad detectados en la senal cruda (aprox. 20-40 s, 55-75 s y 85-100 s) se traducen directamente en las ráfagas de gran amplitud observadas en la senal filtrada, lo que indica que el filtrado por si solo no es suficiente para eliminar artefactos de movimiento cuyo contenido espectral se superpone con la banda de interes (0.5-5 Hz).
