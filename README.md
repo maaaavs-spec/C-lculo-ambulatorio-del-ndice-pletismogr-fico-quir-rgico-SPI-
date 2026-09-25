@@ -512,24 +512,38 @@ fprintf('-----------------------------------------\n');
 
 El codigo adquiere 120 segundos de senal PPG (canal IR) del sensor MAX30102 a traves de un ESP32, muestreada a 100 Hz y dividida en tres etapas de 40 segundos cada una. Sobre la senal cruda se realiza limpieza de muestras invalidas (interpolacion lineal), filtrado pasa-banda Butterworth de orden 3 (0.5-5 Hz) para aislar la componente pulsatil, deteccion de maximos y minimos por latido, calculo del intervalo entre latidos (HBI) y de la amplitud de pulso (PPGA), normalizacion min-max de ambos parametros y combinacion en el Surgical Pleth Index mediante la formula SPI = 100 - (0.7*PPGA_norm + 0.3*HBI_norm), limitado al rango 0-100 y suavizado con una mediana movil de aproximadamente 15 segundos.
 A continuacion se presentan los resultados obtenidos en cada etapa del procesamiento, junto con el analisis de las graficas generadas por el script.
+
 *Senal PPG original*
+
  <img width="875" height="469" alt="image" src="https://github.com/user-attachments/assets/b73349eb-2a0c-4020-a2a7-5ce1d7627bec" />
 
 Figura 1. Senal PPG original (IR) adquirida del MAX30102, 0-120 s.
+
 La senal cruda oscila aproximadamente entre 1.17x10^5 y 1.27x10^5 unidades y esta dominada por una componente lenta de baja frecuencia (deriva de linea base), sin pulsatilidad cardiaca visible a esta escala. Se identifican tres tramos con mayor variabilidad y pendientes pronunciadas, aproximadamente entre 20-40 s, 55-75 s y 85-100 s, que coinciden con los cambios de mayor amplitud en la curva. Estos tramos son compatibles con artefactos de movimiento o variacion en la presion de contacto del dedo sobre el sensor, mas que con actividad cardiaca.
+
 *Senal PPG filtrada*
+
  <img width="875" height="406" alt="image" src="https://github.com/user-attachments/assets/e81c18b8-d389-4556-b58f-a9863888dd8a" />
+ 
 
 Figura 2. Senal PPG filtrada (0.5-5 Hz) completa (arriba) y ventana ampliada 45-55 s (abajo).
+
 Tras el filtrado pasa-banda se recupera la componente pulsatil de la senal. En la ventana ampliada (45-55 s) se observa un patron cuasi periodico con ciclos de aproximadamente 0.8-1.0 s, equivalentes a una frecuencia cardiaca del orden de 60-75 lpm, con morfologia de pulso reconocible (ascenso sistolico y componente dicroto) en varios ciclos consecutivos.
 En la vista completa se identifican ademas varias ráfagas de amplitud notablemente mayor al resto del trazado (picos cercanos a 900 y valles cercanos a -1200 alrededor de los 20, 40, 75 y 115 s), muy superiores a la amplitud tipica del pulso (aprox. +-200 a 300). Estas ráfagas coinciden temporalmente con los tramos de mayor variabilidad ya identificados en la senal original, lo que confirma que corresponden a artefactos de movimiento que sobreviven al filtrado, y no a variaciones fisiologicas reales del pulso.
+
 *Deteccion de maximos y minimos*
+
  <img width="875" height="469" alt="image" src="https://github.com/user-attachments/assets/bd24b39c-1759-437f-bcf2-f89b30a162a3" />
+ 
 Figura 3. Deteccion de maximos y minimos sobre la PPG filtrada, ventana 38-48 s.
+
 El algoritmo findpeaks localiza correctamente un maximo y un minimo por ciclo en la mayor parte del registro mostrado. No obstante, en el tramo cercano a 39.5-40 s, coincidiendo con el artefacto de gran amplitud, se detectan multiples maximos y minimos muy proximos entre si (menos de 1 segundo de separacion), lo que equivale a contabilizar 2 a 3 'latidos' donde en realidad ocurre un unico evento de artefacto. Este comportamiento se debe a que la distancia minima entre picos (0.40 s, equivalente a un limite de 150 lpm) y la prominencia minima (calculada como una fraccion del std global de toda la senal) no son suficientemente restrictivas frente a un artefacto de gran amplitud.
 2.4 Evolucion del Surgical Pleth Index (SPI)
+
  <img width="875" height="469" alt="image" src="https://github.com/user-attachments/assets/d862da20-00ae-41fc-a4e5-01e76cbc5f08" />
+ 
 Figura 4. Evolucion del SPI por latido (puntos) y SPI suavizado con mediana movil (linea), con division en las tres etapas de 40 s.
+
 El SPI calculado latido a latido presenta una dispersion muy amplia a lo largo de todo el registro, con valores puntuales que van desde menos de 5 hasta mas de 90, reflejo directo de los latidos mal detectados sobre los artefactos descritos en la seccion 2.3. La curva suavizada (mediana movil ~15 s) atenua ese ruido y permite observar una tendencia mas clara por etapa, resumida en la Tabla 1.
 Tabla 1. Tendencia del SPI suavizado por etapa (lectura aproximada de la Figura 4).
 Etapa	Intervalo (s)	SPI promedio (aprox.)	Tendencia
@@ -538,6 +552,8 @@ Etapa 2	40 - 80	~55 - 70 (fluctuante)	Inestable, sin tendencia clara
 Etapa 3	80 - 120	~70 -> ~52	Descenso sostenido
 
 En la Etapa 1 (0-40 s) el SPI suavizado inicia en su valor mas alto de todo el registro (~80) y desciende de forma progresiva hasta estabilizarse cerca de 54-55 hacia el final de la etapa. En la Etapa 2 (40-80 s) el indice se recupera parcialmente al inicio (~65-70) pero fluctua de manera inestable durante el resto del intervalo, sin una tendencia neta clara, incluyendo un descenso transitorio alrededor de los 55-60 s. En la Etapa 3 (80-120 s) el SPI suavizado alcanza nuevamente un valor alto al comienzo (~70, el segundo mas alto del registro) y despues desciende de forma sostenida y consistente hasta valores cercanos a 52-55, manteniendose estable en el tramo final.
+
+
 **Analisis**
 
 Calidad de la senal adquirida
