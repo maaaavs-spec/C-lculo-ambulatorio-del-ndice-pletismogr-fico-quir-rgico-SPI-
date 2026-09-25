@@ -61,6 +61,7 @@ Para el desarrollo del laboratorio se implementó un sistema de adquisición de 
 El sensor MAX30102 fue el instrumento de medición. Se situó el dedo sobre su superficie y se trató de mantener la posición estable y en silencio durante todo el proceso de adquisición para disminuir las variaciones causadas por movimiento. El sensor recibe la señal óptica a través de su fotodetector y emisor integrados.
 
 La ESP32 funcionó como unidad de adquisición y comunicación. Los datos obtenidos por el MAX30102 fueron enviados al computador mediante comunicación serial.
+
 ´´´
         DEDO
          │
@@ -91,7 +92,7 @@ La ESP32 funcionó como unidad de adquisición y comunicación. Los datos obteni
           ├── HBI
           ├── PPGA
           └── SPI
-´´
+´´´
 
 La adquisición se realizó durante 120 segundos, dividida en tres etapas de 40 segundos. Posteriormente, los datos fueron procesados en MATLAB para obtener la señal PPG filtrada, detectar los máximos y mínimos y calcular las variables necesarias para la estimación experimental del SPI.
 
